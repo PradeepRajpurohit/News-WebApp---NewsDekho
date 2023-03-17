@@ -11,9 +11,11 @@ export default function NewsItem(props) {
     const [loading, setLoading] = useState(true);
     const [totalResults, setTotalResults] = useState(0);
 
-    // const handle = () => {
-    //     return props.category.charAt(0).toUpperCase() + props.category.slice(1);
-    // }
+    // const [mode, setMode] = useState({
+    //     navbar : "#8AB6F9",
+    //     background : "#CADCFC",
+    //     text : "black"
+    //   })
 
     document.title = `NewsDekho - ${props.category.charAt(0).toUpperCase() + props.category.slice(1)}`
 
@@ -47,7 +49,7 @@ export default function NewsItem(props) {
         return (
             <>
             <div className='container my-3'>
-                <h1 style={{marginTop : "5rem"}}>News Dekho - Latest News</h1>
+                <h1 style={{marginTop : "5rem", color : props.mode.text}}>News Dekho - Latest News</h1>
                 {loading && <Spinner />}
                 <InfiniteScroll
                     dataLength={article.length}
@@ -57,7 +59,7 @@ export default function NewsItem(props) {
                 >
                 {article.map((element,index) => {
                     return <div className="my-3" key={index}>
-                        <News url={element.url} title={element.title} description={element.description} imgUrl={element.urlToImage} publish={element.publishedAt} author={element.author} />
+                        <News mode={props.mode}url={element.url} title={element.title} description={element.description} imgUrl={element.urlToImage} publish={element.publishedAt} author={element.author} />
                     </div>
                 })
 
